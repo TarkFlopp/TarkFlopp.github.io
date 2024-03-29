@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@400..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@400..700&family=Workbench&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="icon" type="image/x-icon" href="./assets/images/me2.png">
+
+    <title>TarkoFlopp</title>
+    <style>
+
+    </style>
+</head>
+<body>
+
+    <header>
+      <div class="titulo">
+        <h1>TarkoFlopp</h1>
+      </div>
+        <img src="./assets/images/me2.png" alt="Logo" class="logo">
+        
+
+        <a href="https://discord.gg/w4z9BJaGCZ" target="_blank">
+          <img src="./assets/images/dc.png" class="discord-button">
+      </a>
+
+        <img src="./assets/images/carrito.png" alt="Carrito de compras" class="cart-icon" id="cart-icon" onclick="toggleCart()">
+        <img src="./assets/images/d.png" alt="Descuento" class="discount-icon" id="discount-icon" onclick="toggleDiscount()">
+    </header>
+    
+      <div class="features-box">
+        <h2>FEATURES</h2>
+        <div class="features-text">
+            <p><strong>VISUALS</strong></p>
+            <ul>
+                <li>Colored chams for:</li>
+                <ul>
+                    <li>Teammate Visible</li>
+                    <li>Teammate Occluded</li>
+                    <li>Player(PMC) Visible</li>
+                    <li>Player(PMC) Occluded</li>
+                    <li>Player(Scav) Visible</li>
+                    <li>Player(Scav) Occluded</li>
+                    <li>AI Visible</li>
+                    <li>AI Occluded</li>
+                    <li>BossAI Visible</li>
+                    <li>BossAI Occluded</li>
+                </ul>
+                <li>Visible check</li>
+                <li>Distance</li>
+            </ul>
+            <p><strong>LOOT</strong></p>
+            <ul>
+                <li>Chams All Items</li>
+                <li>Item whitelist</li>
+                <li>Color by prices</li>
+                <li>Color by categories</li>
+            </ul>
+            <p><strong>CUSTOMIZATION</strong></p>
+            <ul>
+                <li>Custom colors for chams</li>
+                <li>Custom colors for loot</li>
+                <li>Custom player hands color</li>
+                <li>Launcher with GUI</li>
+            </ul>
+            <p><strong>EXPLOITS</strong></p>
+            <ul>
+                <li>Learn more on discord</li>
+                
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+      
+      <div class="product">
+        <div class="product-image-container">
+       
+        </div>
+    
+        <h2>Chams 1 DAY</h2>
+        <p></p>
+        <p>Price: $9</p>
+        <button class="buy-button" onclick="addToCart('Chams 1 DAY', '1 DAY', 9)">Add to cart</button>
+    </div>
+    <div class="product">
+        <div class="product-image-container">
+    
+        </div>
+    
+        <h2>Chams 7 DAYS</h2>
+        <p></p>
+        <p>Price: $28</p>
+        <button class="buy-button" onclick="addToCart('Chams 7 DAYS', '7 DAYS', 18)">Add to cart</button>
+    </div>
+    <div class="product">
+        <div class="product-image-container">
+    
+        </div>
+    
+        <h2>Chams 30 DAYS</h2>
+        <p></p>
+        <p>Price: $48</p>
+        <button class="buy-button" onclick="addToCart('Chams 30 DAYS', '30 DAYS', 30)">Add to cart</button>
+    </div>
+        <div class="tarkov">
+        <img src="./assets/images/test1.jpg" alt="tarkov" >
+        <img src="./assets/images/2.jpg" alt="tarkov" >
+
+      </div>
+        <div class="discount-form" id="discount-form">
+          <h2>Discount</h2>
+          <input type="text" id="discount-code" placeholder="Code">
+          <button onclick="applyDiscount()">Apply discount</button>
+          <span style="position: absolute; top: 0.5rem; right: 0.5rem; cursor: pointer; font-size: 1.5rem; color: #ff0000;" onclick="location.reload()">x</span>
+      </div>
+    </div>
+    <div class="cart" id="cart">
+        <h3>Cart</h3>
+        <ul id="cart-items"></ul>
+        <p>Pay with Paypal: $<span id="paypal-total">0</span></p>
+        <p>Pay with card: $<span id="tarjeta-total">0</span></p>
+        <p>Total: $<span id="cart-total">0</span></p>
+      <div class="button1">
+        <button class="buy-button" id="paypal-button" onclick="payWithPaypal()">Pay with Paypal</button>
+        <button class="buy-button" id="tarjeta-button" onclick="payWithTarjeta()" disabled>Pay with card</button>
+      </div>
+        <span id="thank-you" style="display: none; color: green;">Thanks for your purchase! Contact Flopper for product delivery.</span>
+        <span style="position: absolute; top: 0.5rem; right: 0.5rem; cursor: pointer; font-size: 1.5rem; color: #ff0000;" onclick="location.reload()">x</span>
+    </div>
+    <footer class="footer-copyright">
+      &copy; 2024 Flopper. All rights reserved.
+    </footer>
+    <script>
+     var cartItems = [];
+var totalPaypal = 0;
+var totalTarjeta = 0;
+var compraRealizada = false; // Variable para controlar si ya se ha realizado una compra
+
+function addToCart(itemName, duration, price, pricetotal) {
+    // Si ya se ha realizado una compra, no se permite agregar más productos al carrito
+    if (compraRealizada) {
+        alert("Only one purchase is allowed at a time. Refresh the page to make another purchase.");
+        return;
+    }
+
+    // Eliminar cualquier producto existente en el carrito
+    cartItems = [];
+
+    var tarjetaPrice = 0;
+    var paypalPrice = 0;
+    switch (duration) {
+        case '1 DAY':
+            price = 4.4;
+            pricetotal = 9;
+            tarjetaPrice = price;
+            paypalPrice = pricetotal - price;
+            break;
+        case '7 DAYS':
+            price = 18;
+            pricetotal = 28;
+            tarjetaPrice = price;
+            paypalPrice = pricetotal - price;
+            break;
+        case '30 DAYS':
+            price = 34;
+            pricetotal = 48;
+            tarjetaPrice = price;
+            paypalPrice = pricetotal - price;
+            break;
+        default:
+            price = 0;
+            tarjetaPrice = 0;
+            paypalPrice = 0;
+            break;
+    }
+    cartItems.push({ name: itemName, duration: duration, price: price, tarjetaPrice: tarjetaPrice, paypalPrice: paypalPrice, pricetotal: pricetotal });
+    updateCart();
+    alert("Product added to cart: " + itemName + " - $" + pricetotal.toFixed(2));
+
+    // Establecer la variable de compra realizada a true
+    compraRealizada = true;
+}
+
+function updateCart() {
+    var cartList = document.getElementById("cart-items");
+    var totalElement = document.getElementById("cart-total");
+    var paypalElement = document.getElementById("paypal-total");
+    var tarjetaElement = document.getElementById("tarjeta-total");
+    var total = 0;
+    var paypalTotal = 0;
+    var tarjetaTotal = 0;
+
+    cartList.innerHTML = '';
+
+    cartItems.forEach(function(item) {
+        var li = document.createElement("li");
+        li.textContent = item.name + " - " + item.duration + " - $" + item.pricetotal.toFixed(2);
+        cartList.appendChild(li);
+        total += item.pricetotal;
+
+        paypalTotal += item.paypalPrice;
+        tarjetaTotal += item.tarjetaPrice;
+    });
+
+    totalElement.textContent = total.toFixed(2);
+    paypalElement.textContent = paypalTotal.toFixed(2);
+    tarjetaElement.textContent = tarjetaTotal.toFixed(2);
+}
+
+function payWithPaypal() {
+    var paypalLink = "https://paypal.me/floppersir?country.x=CR&locale.x=es_XC";
+    window.open(paypalLink, '_blank');
+    totalPaypal = parseFloat(document.getElementById("paypal-total").textContent);
+    totalTarjeta = parseFloat(document.getElementById("tarjeta-total").textContent);
+    document.getElementById("paypal-button").disabled = true;
+    document.getElementById("tarjeta-button").disabled = false;
+    document.getElementById("paypal-total").style.color = "black";
+    document.getElementById("cart-total").textContent = totalTarjeta.toFixed(2);
+
+    // Restablecer la variable de compra realizada a false después de realizar la compra
+    compraRealizada = false;
+}
+
+
+      function payWithTarjeta() {
+    var lastItem = cartItems[cartItems.length - 1];
+    var productName = lastItem.name;
+    var duration = lastItem.duration;
+
+    var tarjetaLink;
+
+    // Selecciona el enlace de tarjeta según la duración del producto
+    switch (duration) {
+        case '1 DAY':
+            tarjetaLink = "https://digichee.sell.app/product/champ1d?quantity=1&payment_method=STRIPE&email=tarkovflopper%40gmail.com";
+            break;
+        case '7 DAYS':
+            tarjetaLink = "https://digichee.sell.app/product/champ7d?quantity=1&payment_method=STRIPE&email=tarkovflopper%40gmail.com";
+            break;
+        case '30 DAYS':
+            tarjetaLink = "https://digichee.sell.app/product/champ30d?quantity=1&payment_method=STRIPE&email=tarkovflopper%40gmail.com";
+            break;
+        default:
+            tarjetaLink = "https://discord.gg/w4z9BJaGCZ"; // Enlace predeterminado en caso de que no haya una coincidencia
+            break;
+    }
+
+    // Abre el enlace de tarjeta en una nueva pestaña
+    window.open(tarjetaLink, '_blank');
+
+    // Resto del código para deshabilitar el botón de tarjeta y mostrar el mensaje de agradecimiento
+    document.getElementById("tarjeta-button").disabled = true;
+    document.getElementById("thank-you").style.display = "block";
+}
+
+function payWithPaypal() {
+          var paypalLink = "https://paypal.me/floppersir?country.x=CR&locale.x=es_XC";
+          window.open(paypalLink, '_blank');
+          totalPaypal = parseFloat(document.getElementById("paypal-total").textContent);
+          totalTarjeta = parseFloat(document.getElementById("tarjeta-total").textContent);
+          document.getElementById("paypal-button").disabled = true;
+          document.getElementById("tarjeta-button").disabled = false;
+          document.getElementById("paypal-total").style.color = "black";
+          document.getElementById("cart-total").textContent = totalTarjeta.toFixed(2);
+      }
+
+
+  
+      function toggleCart() {
+          var cart = document.getElementById("cart");
+          if (cart.style.display === "block") {
+              cart.style.display = "none";
+          } else {
+              cart.style.display = "block";
+          }
+      }
+      var discountApplied = false; // Variable para verificar si se ha aplicado un descuento
+
+function applyDiscount() {
+    var discountCode = document.getElementById("discount-code").value;
+    var discounts = {
+        "FLOPPERCUPON10": 0.1, // 10% de descuento
+        "FLOPPERCUPON20": 0.2, // 20% de descuento
+        "FLOPPERCUPON030": 0.3, // 30% de descuento
+        "MAQUINA": 0.4  // 40% de descuento
+        // Puedes agregar más códigos de descuento y sus valores aquí
+    };
+
+    // Verificar si un descuento ya ha sido aplicado
+    if (discountApplied) {
+        alert("Only one discount can be applied per purchase.");
+        return;
+    }
+
+    // Verificar si el código de descuento existe en la lista
+    if (discountCode in discounts) {
+        var paypalTotalElement = document.getElementById("paypal-total");
+        var paypalTotal = parseFloat(paypalTotalElement.textContent);
+        var discountValue = discounts[discountCode];
+        var discountedTotal = paypalTotal * (1 - discountValue);
+        paypalTotalElement.textContent = discountedTotal.toFixed(2);
+        alert("Descuento aplicado: " + (discountValue * 100) + "%");
+
+        // Marcar que se ha aplicado un descuento
+        discountApplied = true;
+    } else {
+        alert("Invalid discount code.");
+    }
+}
+
+  
+      function toggleDiscount() {
+          var discountForm = document.getElementById("discount-form");
+          if (discountForm.style.display === "block") {
+              discountForm.style.display = "none";
+          } else {
+              discountForm.style.display = "block";
+          }
+      }
+  </script>
+  
+  
+  
+  
+</body>
+</html>

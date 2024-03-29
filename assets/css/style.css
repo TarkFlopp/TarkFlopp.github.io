@@ -1,0 +1,282 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('/assets/images/1.png'); /* Imagen de fondo */
+    background-size: cover; /* Ajuste de tamaño de la imagen */
+    background-position: center; /* Posicionamiento de la imagen */
+    color: #fff; /* Texto blanco */
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    min-height: 100vh;
+}
+header {
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 999;
+}
+header h1 {
+    margin: 0;
+    margin-left: 1rem; /* Ajuste para posicionar el título a la izquierda */
+    font-family: Arial, sans-serif; /* Tipografía */
+}
+.logo {
+  width: 7rem; /* Tamaño de la imagen */
+    margin-right: 1rem; /* Ajuste para posicionar el logo a la derecha */
+}
+.discord-button {
+  right: 2rem;
+width: 7rem;
+align-items: center;
+}
+.discord-button:hover {
+    background-color: #5468a9; /* Discord color oscuro */
+}
+.cart-icon {
+    width: 2rem;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.3s;
+    position: fixed;
+    bottom: 1rem; /* Ajuste para posicionar la imagen más abajo */
+    right: 1rem; /* Ajuste para posicionar la imagen a la derecha */
+    z-index: 999; /* Asegura que la imagen esté sobre otros elementos */
+}
+.discount-icon {
+    width: 2.3rem;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.3s;
+    position: fixed;
+    bottom: 4rem; /* Ajuste para posicionar la imagen más abajo */
+    right: 1rem; /* Ajuste para posicionar la imagen a la derecha */
+    z-index: 999; /* Asegura que la imagen esté sobre otros elementos */
+}
+.cart-icon:hover {
+    transform: scale(1.1);
+}
+.container {
+    max-width: 1200px;
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    margin-top: 5rem;
+}
+.product {
+ 
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente blanco */
+    border-radius: 2rem;
+    box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.3);
+    margin-bottom: 3rem;
+    padding: 2.5rem;
+    left: 2rem;
+    top: 2rem;
+    width: calc(20.33% - 2.5rem); /* Ancho de cada producto */
+    transition: transform 0.3s ease-in-out;
+    position: relative; /* Añadido para posicionar la imagen */
+    margin-right: 3rem; /* Espacio entre productos */
+}
+.tarkov {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 2rem;
+    
+}
+.tarkov img {
+    width: 500px; /* Ancho deseado */
+    height: auto;
+    margin: 0.5rem; /* Espacio entre las imágenes */
+    border-radius: 2rem;
+}
+.product:last-child {
+    margin-right: 0; /* Elimina el margen derecho del último producto */
+}
+.product:hover {
+    transform: translateY(-0.5rem);
+}
+.product h2 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    color: #000; /* Texto negro */
+    margin-bottom: 1rem;
+    font-family: Arial, sans-serif; /* Tipografía */
+}
+.product p {
+    margin-bottom: 1.5rem;
+    color: #333; /* Texto gris oscuro */
+}
+.product .product-image-container {
+    position: absolute;
+    top: 0.5rem; /* Ajuste para evitar superposición */
+    left: 0.5rem; /* Ajuste para evitar superposición */
+    width: 2rem; /* Tamaño de la imagen */
+    height: auto;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    z-index: 1; /* Asegura que la imagen esté detrás del contenido */
+}
+.product img {
+    max-width: 100%;
+    border-radius: 0.5rem;
+    position: relative;
+    z-index: 0; /* Asegura que la imagen esté delante del contenedor */
+}
+.buy-button {
+    background-color: #a56fb3; /* Morado */
+    border: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+}
+
+.buy-button:hover {
+    background-color: #8c559a; /* Morado oscuro */
+}
+.cart {
+    position: fixed;
+    top: 25rem;
+    right: 1rem;
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente blanco */
+    color: #000; /* Texto negro */
+    padding: 1rem;
+    border-radius: 1rem;
+    z-index: 999;
+    box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.3);
+    display: none;
+}
+.cart h3 {
+    margin-top: 0;
+}
+.cart ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.cart li {
+    margin-bottom: 0.5rem;
+}
+.discount-form {
+display: none; /* Inicialmente oculto */
+width: calc(12.70% - 1rem);
+position: fixed;
+top: 10rem;
+right: 1rem;
+background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente blanco */
+color: #000; /* Texto negro */
+padding: 1rem;
+border-radius: 1rem;
+z-index: 999;
+box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.3);
+text-align: center;
+}
+
+.discount-form input[type="text"] {
+width: calc(100% - 1rem);
+padding: 0.5rem;
+margin-bottom: 1rem;
+border: 1px solid #000; /* Borde negro */
+border-radius: 0.5rem;
+font-size: 1rem;
+color: #000; /* Texto negro */
+background-color: #fff; /* Fondo blanco */
+margin-right: 0.5rem; /* Ajusta el margen a la derecha */
+text-align: center;
+}
+
+.discount-form button {
+width: 14rem;
+background-color: #a56fb3; /* Morado */
+border: none;
+color: white;
+padding: 0.5rem 1rem;
+text-align: center; /* Centra el texto dentro del botón */
+text-decoration: none;
+display: inline-block;
+font-size: 1rem;
+border-radius: 0.5rem;
+cursor: pointer;
+transition: background-color 0.3s;
+}
+
+.discount-form button:hover {
+background-color: #8c559a; /* Morado oscuro */
+}
+
+.features-box {
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente blanco */
+    border-radius: 2rem;
+    box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.3);
+    padding: 20px; /* Espaciado interno */
+    width: 400px; /* Ancho del cuadro */
+    height: 700px;
+    margin: 10rem auto 0; /* Margen superior de 3rem y centrar horizontalmente */
+    
+    
+}
+
+/* Estilos para el texto dentro del cuadro */
+.features-text {
+    font-size: 14px; /* Tamaño del texto */
+    line-height: 1.5; /* Espaciado entre líneas */
+    color: black; /* Color del texto */
+}
+
+
+
+/* Estilos de la animación del título */
+header h1 {
+    margin: 0;
+    margin-left: 1rem; /* Ajuste para posicionar el título a la izquierda */
+    font-family: 'Workbench'; /* Tipografía */
+    font-size: 3rem; /* Tamaño de la fuente */
+    animation: bounce 2s infinite; /* Animación */
+    bottom: 5rem;
+    text-align: center;
+    
+}
+
+/* Estilos de la animación del título */
+
+.features-box h2 {
+    margin: 0;
+    margin-left: 1rem; /* Ajuste para posicionar el título a la izquierda */
+    font-family: 'Workbench'; /* Tipografía */
+    font-size: 2rem; /* Tamaño de la fuente */
+    animation: bounce 2s infinite; /* Animación */
+    bottom: 5rem;
+    text-align: center;
+    color: #8c559a;
+}
+
+.footer-copyright {
+  position: fixed;
+left: calc(5% - 1rem); /* Centramos el texto y lo movemos 2 rem a la derecha */
+bottom: 0;
+background-color: transparent;
+color: #fff;
+text-align: center;
+padding: 10px 0;
+font-size: 14px;
+width: 100%; /* Ajustamos el ancho para ocupar toda la pantalla */
+}
+
