@@ -79,9 +79,9 @@
        
         </div>
     
-        <h2>WZ 2.0 1 DAY</h2>
+        <h2>Chams 1 DAY</h2>
         <p></p>
-        <p>Price: $5</p>
+        <p>Price: $9</p>
         <button class="buy-button" onclick="addToCart('Chams 1 DAY', '1 DAY', 9)">Add to cart</button>
     </div>
     <div class="product">
@@ -152,8 +152,8 @@ function addToCart(itemName, duration, price, pricetotal) {
     var paypalPrice = 0;
     switch (duration) {
         case '1 DAY':
-            price = 3;
-            pricetotal = 5;
+            price = 4.4;
+            pricetotal = 9;
             tarjetaPrice = price;
             paypalPrice = pricetotal - price;
             break;
@@ -234,7 +234,7 @@ function payWithPaypal() {
     // Selecciona el enlace de tarjeta según la duración del producto
     switch (duration) {
         case '1 DAY':
-            tarjetaLink = "https://digitalcheetah.sell.app/product/dw-mw2-1-day?quantity=1&payment_method=COINBASE&email=tarkovflopper%40gmail.com";
+            tarjetaLink = "https://digichee.sell.app/product/champ1d?quantity=1&payment_method=STRIPE&email=tarkovflopper%40gmail.com";
             break;
         case '7 DAYS':
             tarjetaLink = "https://digichee.sell.app/product/champ7d?quantity=1&payment_method=STRIPE&email=tarkovflopper%40gmail.com";
